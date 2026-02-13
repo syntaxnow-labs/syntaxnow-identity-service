@@ -1,0 +1,27 @@
+# Ignore Maven build output
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.iml
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Git stuff
+.git
+.gitignore
+
+# Logs
+*.log
+logs/
+
+# Node modules (if any accidental front-end folder exists)
+node_modules/
+
+# Temp files
+*.tmp
+*.swp

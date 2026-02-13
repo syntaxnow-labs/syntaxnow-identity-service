@@ -1,0 +1,36 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+
+    <servers>
+        <server>
+            <id>syntaxnow-starter-parent</id>
+            <username>${env.SN_GITHUB_USERNAME}</username>
+            <password>${env.SN_GITHUB_TOKEN}</password>
+        </server>
+    </servers>
+
+    <profiles>
+        <profile>
+            <id>syntaxnow-internal</id>
+
+            <repositories>
+                <repository>
+                    <id>syntaxnow-starter-parent</id>
+                    <url>https://maven.pkg.github.com/SyntaxNow-Labs/syntaxnow-starter-parent</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>syntaxnow-internal</activeProfile>
+    </activeProfiles>
+
+</settings>

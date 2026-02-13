@@ -1,0 +1,51 @@
+server:
+  address: "${HTTP_BIND_ADDRESS:0.0.0.0}"
+  port: "${HTTP_BIND_PORT:9090}"
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: syntaxnow-identity-service
+  security:
+    user:
+      name: none
+      password: none
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+firebase:
+  credentials: /app/secrets/firebase.json
+
+keycloak:
+  url: ${KEYCLOAK_URL:https://auth.syntaxnow.com}
+  realm: ${KEYCLOAK_REALM:syntaxnow}
+  adminUser: ${KEYCLOAK_ADMIN_USER:admin}
+  adminPassword: ${KEYCLOAK_ADMIN_PASSWORD}
+  clientId: ${KEYCLOAK_CLIENT_ID:syntaxnow-identity-service}
+  clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+
+  endpoints:
+    admin-token: /realms/master/protocol/openid-connect/token
+    realm-token: /realms/{realm}/protocol/openid-connect/token
+    logout: /realms/{realm}/protocol/openid-connect/logout
+    userinfo: /realms/{realm}/protocol/openid-connect/userinfo
+
+    admin-users: /admin/realms/{realm}/users
+    search-users: /admin/realms/{realm}/users?search={username}
+    reset-password: /admin/realms/{realm}/users/{userId}/reset-password
+    impersonate: /admin/realms/{realm}/users/{userId}/impersonation
+
+syntaxnow:
+  identity:
+    defaultRole: user
+
+logging:
+  level:
+    com.syntaxnow.sso: INFO
+    org.springframework.security: INFO
+
