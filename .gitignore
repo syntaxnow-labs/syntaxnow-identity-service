@@ -32,3 +32,5 @@ target/
 # Firebase service accounts
 firebase-service-account-backend.json
 firebase-service-account-frontend.json
+
+app/secrets/*
