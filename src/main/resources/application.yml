@@ -19,15 +19,15 @@ springdoc:
     path: /swagger-ui.html
 
 firebase:
-  credentials: /app/secrets/firebase.json
+  credentials: ./app/secrets/firebase.json
 
 keycloak:
   url: ${KEYCLOAK_URL:https://auth.syntaxnow.com}
   realm: ${KEYCLOAK_REALM:syntaxnow}
   adminUser: ${KEYCLOAK_ADMIN_USER:admin}
-  adminPassword: ${KEYCLOAK_ADMIN_PASSWORD}
+  adminPassword: ${KEYCLOAK_ADMIN_PASSWORD:KC!Ft9rQQayZG13}
   clientId: ${KEYCLOAK_CLIENT_ID:syntaxnow-identity-service}
-  clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+  clientSecret: ${KEYCLOAK_CLIENT_SECRET:ddAuOqLtkBjDGjqUYfJUkZvSzSykAho3}
 
   endpoints:
     admin-token: /realms/master/protocol/openid-connect/token
