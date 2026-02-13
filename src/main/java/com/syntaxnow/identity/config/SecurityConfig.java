@@ -3,6 +3,7 @@ package com.syntaxnow.identity.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
@@ -31,6 +32,7 @@ public class SecurityConfig {
                                 "/auth/refresh",
                                 "/auth/logout"
                         ).permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(
@@ -47,9 +49,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Explicit origins (required when allowCredentials = true)
-        config.setAllowedOrigins(List.of(
-                "http://localhost:5173"
-        ));
+        config.setAllowedOriginPatterns(List.of("*"));
 
         config.setAllowedMethods(List.of(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS"
@@ -57,8 +57,7 @@ public class SecurityConfig {
 
         config.setAllowedHeaders(List.of("*"));
 
-        // REQUIRED for Keycloak + Google cookies
-        config.setAllowCredentials(true);
+        config.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
