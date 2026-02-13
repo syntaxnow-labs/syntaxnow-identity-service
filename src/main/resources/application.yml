@@ -44,6 +44,13 @@ syntaxnow:
   identity:
     defaultRole: user
 
+app:
+  cors:
+    allowed-origins:
+      - "http://localhost:*"
+      - "https://localhost:*"
+      - "https://*.syntaxnow.com"
+
 logging:
   level:
     com.syntaxnow.sso: INFO
