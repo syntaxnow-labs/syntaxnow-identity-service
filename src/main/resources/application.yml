@@ -22,11 +22,11 @@ firebase:
   credentials: /app/secrets/firebase.json
 
 keycloak:
-  url: ${KEYCLOAK_URL:https://auth.syntaxnow.com}
-  realm: ${KEYCLOAK_REALM:syntaxnow}
-  adminUser: ${KEYCLOAK_ADMIN_USER:admin}
+  url: ${KEYCLOAK_URL}
+  realm: ${KEYCLOAK_REALM}
+  adminUser: ${KEYCLOAK_ADMIN_USER}
   adminPassword: ${KEYCLOAK_ADMIN_PASSWORD}
-  clientId: ${KEYCLOAK_CLIENT_ID:syntaxnow-identity-service}
+  clientId: ${KEYCLOAK_CLIENT_ID}
   clientSecret: ${KEYCLOAK_CLIENT_SECRET}
 
   endpoints:
@@ -53,6 +53,5 @@ app:
 
 logging:
   level:
-    com.syntaxnow.sso: INFO
-    org.springframework.security: INFO
+    root: ${LOG_LEVEL}
 
