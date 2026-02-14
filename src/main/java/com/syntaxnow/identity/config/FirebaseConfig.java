@@ -8,22 +8,29 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @Configuration
 public class FirebaseConfig {
 
+    @Value("${firebase.credentials}")
+    private String firebaseCredentialsJson;
+
     @Bean
-    public FirebaseApp firebaseApp(
-            @Value("${firebase.credentials}") String credentialsPath
-    ) throws IOException {
+    public FirebaseApp firebaseApp() throws IOException {
 
-        log.info("Initializing Firebase using credentials from: {}", credentialsPath);
+        log.info("Initializing Firebase using credentials from environment variable");
 
-        try (InputStream serviceAccount = new FileInputStream(credentialsPath)) {
+        if (firebaseCredentialsJson == null || firebaseCredentialsJson.isBlank()) {
+            throw new IllegalStateException("FIREBASE_SERVICE_ACCOUNT is not configured");
+        }
+
+        try (InputStream serviceAccount =
+                     new ByteArrayInputStream(firebaseCredentialsJson.getBytes(StandardCharsets.UTF_8))) {
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
